@@ -1,118 +1,72 @@
-from pathlib import Path
-
-# Combined final version of the HTML from grow-cart-website.html + product images
-final_html = """
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Grow Cart - Grow A Garden</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #7f00ff, #faff00);
-            color: #fff;
-        }
-        header {
-            text-align: center;
-            padding: 40px 20px;
-        }
-        h1 {
-            font-size: 50px;
-            margin-bottom: 10px;
-        }
-        p {
-            font-size: 20px;
-        }
-        .nav {
-            text-align: center;
-            margin: 20px;
-        }
-        .nav a {
-            margin: 0 15px;
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            padding: 10px 20px;
-            border: 2px solid white;
-            border-radius: 8px;
-        }
-        .section {
-            padding: 30px;
-            text-align: center;
-        }
-        .product {
-            background: rgba(255, 255, 255, 0.15);
-            margin: 20px auto;
-            padding: 20px;
-            border-radius: 12px;
-            width: 90%;
-            max-width: 400px;
-        }
-        .product img {
-            max-width: 100%;
-            border-radius: 12px;
-            margin-bottom: 10px;
-            border: 2px solid white;
-        }
-        .footer {
-            text-align: center;
-            margin-top: 40px;
-            padding: 20px;
-            font-size: 16px;
-        }
-        .btn {
-            background: white;
-            color: black;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 8px;
-            display: inline-block;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grow Cart Store</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #7f00ff, #e100ff);
+      color: #fff;
+      text-align: center;
+      padding: 50px;
+    }
+    h1 {
+      font-size: 48px;
+      margin-bottom: 10px;
+    }
+    p {
+      font-size: 20px;
+      margin-bottom: 30px;
+    }
+    .item {
+      margin: 30px auto;
+      max-width: 300px;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    }
+    .item img {
+      max-width: 100%;
+      border-radius: 15px;
+    }
+    .item h2 {
+      margin: 10px 0 5px;
+    }
+    .item p {
+      font-size: 16px;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>🌱 Grow Cart - Grow A Garden 🌼</h1>
-        <p>Trusted Roblox Item Store – Secure Stripe Payments – USD Only</p>
-        <div class="nav">
-            <a href="#pets">Pets</a>
-            <a href="#fruits">Fruits</a>
-        </div>
-    </header>
+  <h1>Grow Cart Store 🌱</h1>
+  <p>Buy your favorite Grow a Garden items here!</p>
 
-    <div class="section" id="pets">
-        <h2>🐾 Pet Items</h2>
-        <div class="product"><img src="DragonFLy.png"><h3>Dragonfly</h3><p>$8 USD</p></div>
-        <div class="product"><img src="Raccoon.png"><h3>Raccoon</h3><p>$10 USD</p></div>
-        <div class="product"><img src="Queen Bee.png"><h3>Queen Bee</h3><p>$5 USD</p></div>
-        <div class="product"><img src="Diso Bee.png"><h3>Disco Bee</h3><p>$15 USD</p></div>
-        <div class="product"><img src="Butterfly.png"><h3>Butterfly</h3><p>$8 USD</p></div>
-        <div class="product"><img src="Mimic octopus.png"><h3>Mimic Octopus</h3><p>$7.50 USD</p></div>
-        <div class="product"><img src="Raccoon.png"><h3>Red Fox</h3><p>$3 USD</p></div>
-        <div class="product"><img src="Chicken zombie.png"><h3>Chicken Zombie</h3><p>$3 USD</p></div>
-        <div class="product"><img src="T-rex.png"><h3>T-Rex</h3><p>$10 USD</p></div>
-    </div>
+  <div class="item">
+    <img src="Butterfly.png" alt="Butterfly">
+    <h2>Butterfly</h2>
+    <p>One of the rare flying pets.</p>
+  </div>
 
-    <div class="section" id="fruits">
-        <h2>🍉 Fruits & Sheckles</h2>
-        <div class="product"><img src="634T sheckles.webp"><h3>634T Sheckles</h3><p>$1 USD</p></div>
-        <div class="product"><img src="15 pcs of 634T sheckles.PNG"><h3>15 pcs of 634T Sheckles</h3><p>$10 USD</p></div>
-    </div>
+  <div class="item">
+    <img src="DragonFLy.png" alt="DragonFly">
+    <h2>DragonFly</h2>
+    <p>Super speed legendary dragonfly!</p>
+  </div>
 
-    <div class="footer">
-        <p>💬 Contact after purchase:</p>
-        <p>Discord: 6zinferno0664 or akatsumi10</p>
-        <p>Server: <a class="btn" href="https://discord.gg/TE6mNPZkaz" target="_blank">Join Discord Server</a></p>
-        <p><em>Bundles coming soon!</em></p>
-    </div>
+  <div class="item">
+    <img src="Queen Bee.png" alt="Queen Bee">
+    <h2>Queen Bee</h2>
+    <p>The ruler of the hive. Limited time only!</p>
+  </div>
+
+  <div class="item">
+    <img src="Mimic octopus.png" alt="Mimic Octopus">
+    <h2>Mimic Octopus</h2>
+    <p>Shapeshifter vibes. Very sussy 🐙</p>
+  </div>
+
 </body>
 </html>
-"""
-
-# Save final version to index.html for GitHub Pages
-output_path = Path("/mnt/data/index.html")
-output_path.write_text(final_html)
-
-output_path.name
