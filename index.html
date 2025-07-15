@@ -1,119 +1,137 @@
-from pathlib import Path
-
-# Final HTML code with Stripe payment buttons
-html_with_stripe = """
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Grow Cart - Grow A Garden</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #7f00ff, #faff00);
-            color: #fff;
-        }
-        header {
-            text-align: center;
-            padding: 40px 20px;
-        }
-        h1 {
-            font-size: 50px;
-            margin-bottom: 10px;
-        }
-        p {
-            font-size: 20px;
-        }
-        .nav {
-            text-align: center;
-            margin: 20px;
-        }
-        .nav a {
-            margin: 0 15px;
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            padding: 10px 20px;
-            border: 2px solid white;
-            border-radius: 8px;
-        }
-        .section {
-            padding: 30px;
-            text-align: center;
-        }
-        .product {
-            background: rgba(255, 255, 255, 0.15);
-            margin: 20px auto;
-            padding: 20px;
-            border-radius: 12px;
-            width: 90%;
-            max-width: 400px;
-        }
-        .product img {
-            max-width: 100%;
-            border-radius: 12px;
-            margin-bottom: 10px;
-            border: 2px solid white;
-        }
-        .btn {
-            background: white;
-            color: black;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 8px;
-            display: inline-block;
-            margin-top: 10px;
-        }
-        .footer {
-            text-align: center;
-            margin-top: 40px;
-            padding: 20px;
-            font-size: 16px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grow Cart - Grow A Garden</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #7f00ff, #faff00);
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    header {
+      text-align: center;
+      padding: 20px;
+      background: #000000aa;
+    }
+
+    header img {
+      max-width: 250px;
+      animation: pop 1s ease-in-out;
+    }
+
+    @keyframes pop {
+      0% { transform: scale(0.9); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .nav {
+      margin: 20px auto;
+    }
+
+    .nav a {
+      margin: 0 10px;
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      border: 2px solid white;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .nav a:hover {
+      background: white;
+      color: black;
+    }
+
+    .section {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .product {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 20px;
+      margin: 20px auto;
+      border-radius: 12px;
+      max-width: 400px;
+      transition: transform 0.3s ease;
+    }
+
+    .product:hover {
+      transform: scale(1.03);
+    }
+
+    .product img {
+      width: 100%;
+      border-radius: 12px;
+      border: 2px solid white;
+      margin-bottom: 10px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background: white;
+      color: black;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      background: black;
+      color: white;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+    }
+
+    @media screen and (max-width: 600px) {
+      .nav a {
+        display: block;
+        margin: 10px auto;
+      }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>🌱 Grow Cart - Grow A Garden 🌼</h1>
-        <p>Trusted Roblox Item Store – Secure Stripe Payments – USD Only</p>
-        <div class="nav">
-            <a href="#pets">Pets</a>
-            <a href="#fruits">Fruits</a>
-        </div>
-    </header>
-
-    <div class="section" id="pets">
-        <h2>🐾 Pet Items</h2>
-        <div class="product"><img src="DragonFLy.png"><h3>Dragonfly</h3><p>$8 USD</p><a class="btn" href="https://buy.stripe.com/test_bJeeVcbGW2LM37w5pW5sA01" target="_blank">Buy Now</a></div>
-        <div class="product"><img src="Raccoon.png"><h3>Raccoon</h3><p>$10 USD</p><a class="btn" href="https://buy.stripe.com/test_fZu9ASaCS4TU7nMdWs5sA02" target="_blank">Buy Now</a></div>
-        <div class="product"><img src="Queen Bee.png"><h3>Queen Bee</h3><p>$5 USD</p><a class="btn" href="https://buy.stripe.com/test_9B66oG8uK9aaazYaKg5sA03" target="_blank">Buy Now</a></div>
-        <div class="product"><img src="Diso Bee.png"><h3>Disco Bee</h3><p>$15 USD</p><a class="btn" href="https://buy.stripe.com/test_fZufZg7qG3PQazY19G5sA04" target="_blank">Buy Now</a></div>
-        <div class="product"><img src="Butterfly.png"><h3>Butterfly</h3><p>$8 USD</p><a class="btn" href="https://buy.stripe.com/test_dRm9AS4eu7227nM8C85sA05" target="_blank">Buy Now</a></div>
-        <div class="product"><img src="Mimic octopus.png"><h3>Mimic Octopus</h3><p>$7.50 USD</p><a class="btn" href="https://buy.stripe.com/test_00w6oG26m86623s9Gc5sA06" target="_blank">Buy Now</a></div>
-        <div class="product"><img src="Raccoon.png"><h3>Red Fox</h3><p>$3 USD</p><a class="btn" href="https://buy.stripe.com/test_aFafZg9yO722eQeg4A5sA07" target="_blank">Buy Now</a></div>
-        <div class="product"><img src="Chicken zombie.png"><h3>Chicken Zombie</h3><p>$3 USD</p><a class="btn" href="https://buy.stripe.com/test_3cI4gydP43PQgYmdWs5sA08" target="_blank">Buy Now</a></div>
-        <div class="product"><img src="T-rex.png"><h3>T-Rex</h3><p>$10 USD</p><a class="btn" href="https://buy.stripe.com/test_6oU28qfXcbii7nMcSo5sA09" target="_blank">Buy Now</a></div>
+  <header>
+    <img src="ChatGPT Image Jul 15, 2025, 10_35_32 PM.png" alt="Grow Cart Logo">
+    <div class="nav">
+      <a href="#pets">Pets</a>
+      <a href="#fruits">Fruits</a>
     </div>
+  </header>
 
-    <div class="section" id="fruits">
-        <h2>🍉 Fruits & Sheckles</h2>
-        <div class="product"><img src="634T sheckles.webp"><h3>634T Sheckles</h3><p>$1 USD</p><a class="btn" href="https://buy.stripe.com/test_00w9ASdP4euuazYf0w5sA0a" target="_blank">Buy Now</a></div>
-        <div class="product"><img src="15 pcs of 634T sheckles.PNG"><h3>15 pcs of 634T Sheckles</h3><p>$10 USD</p><a class="btn" href="https://buy.stripe.com/test_6oUdR89yOaee0ZocSo5sA0b" target="_blank">Buy Now</a></div>
+  <div class="section" id="pets">
+    <h2>🐾 Pet Items</h2>
+    <div class="product">
+      <img src="DragonFLy.png"><h3>Dragonfly</h3><p>$8 USD</p>
+      <a href="https://buy.stripe.com/test_bJeeVcbGW2LM37w5pW5sA01" class="btn">Buy Now</a>
     </div>
+    <!-- Repeat same block with different info -->
+    <!-- Add the rest of pets here with corresponding stripe links -->
+  </div>
 
-    <div class="footer">
-        <p>💬 Contact after purchase:</p>
-        <p>Discord: 6zinferno0664 or akatsumi10</p>
-        <p>Server: <a class="btn" href="https://discord.gg/TE6mNPZkaz" target="_blank">Join Discord Server</a></p>
-        <p><em>Bundles coming soon!</em></p>
+  <div class="section" id="fruits">
+    <h2>🍉 Fruits & Sheckles</h2>
+    <div class="product">
+      <img src="634T sheckles.webp"><h3>634T Sheckles</h3><p>$1 USD</p>
+      <a href="https://buy.stripe.com/test_00w9ASdP4euuazYf0w5sA0a" class="btn">Buy Now</a>
     </div>
+  </div>
+
+  <div class="footer">
+    <p>💬 Contact after purchase: Discord 6zinferno0664 or akatsumi10</p>
+    <a class="btn" href="https://discord.gg/TE6mNPZkaz" target="_blank">Join Discord Server</a>
+  </div>
 </body>
 </html>
-"""
-
-# Save to file
-file_path = Path("/mnt/data/index.html")
-file_path.write_text(html_with_stripe)
-
-file_path.name
